@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Packet Prediction</title>
+</head>
+<body>
+    <h1>5G Packet Category & Model Selection</h1>
+    <form method="POST">
+        <label>Use Case:</label>
+        <input type="text" name="use_case" required><br><br>
+        <label>UE Category:</label>
+        <input type="text" name="ue_category" required><br><br>
+        <label>Tech Supported:</label>
+        <input type="text" name="tech_supported" required><br><br>
+        <label>GBR:</label>
+        <input type="text" name="gbr" required><br><br>
+        <label>Packet Loss:</label>
+        <input type="number" step="any" name="packet_loss" required><br><br>
+        <label>Delay:</label>
+        <input type="number" step="any" name="delay" required><br><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if category %}
+        <h2>Detected Category: {{ category }}</h2>
+        <h3>Model Accuracies:</h3>
+        <ul>
+        {% for name, acc in results.items() %}
+            <li>{{ name }} → Accuracy: {{ acc }}</li>
+        {% endfor %}
+        </ul>
+        <h3>Best Model: {{ best_model }}</h3>
+        <h2>Predicted Slice Type: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
